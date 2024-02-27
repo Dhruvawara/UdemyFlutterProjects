@@ -28,7 +28,12 @@ class _AuthScreenState extends State<AuthScreen> {
 
   void _submit() async {
     final isValid = _formKey.currentState!.validate();
-    if (isValid && _selectedImage != null) {
+
+    if (!_isLogin && _selectedImage == null) {
+      return;
+    }
+
+    if (isValid) {
       _formKey.currentState?.save();
       try {
         setState(() {
